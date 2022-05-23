@@ -49,9 +49,9 @@ func StringSum(input string) (output string, err error) {
 	s2 := strings.FieldsFunc(s1, Split)
 	opp1, _  := strconv.Atoi(s2[0])
 	opp2, _  := strconv.Atoi(s2[1])
-	if minus_count > 2 || plus_count > 2 {
-		return "", errorNotTwoOperands
-	}else if minus_count == 2 {
+	// if minus_count > 2 || plus_count > 2 {
+	// 	return "", errorNotTwoOperands
+	if minus_count == 2 {
 		
 		return strconv.Itoa(-opp1-opp2), err
 	}else if minus_count == 1 && s1[0] == 45 {
@@ -59,6 +59,8 @@ func StringSum(input string) (output string, err error) {
 	}else{
 		return strconv.Itoa(opp2+opp1), err
 	}
+
+	
 
 
 	
