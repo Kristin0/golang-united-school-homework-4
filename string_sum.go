@@ -53,14 +53,18 @@ func StringSum(input string) (output string, err error) {
 	if len(s2) > 2 || len(s2) <= 1 {return "", errorNotTwoOperands}
 	opp1, err1  := strconv.Atoi(s2[0])
 	opp2, err2  := strconv.Atoi(s2[1])
-	if err1 != nil || err2 != nil {
-		return "", fmt.Errorf("operand %s or %s is string", s2[0], s2[1])
+	if err1 != nil {
+		return "", fmt.Errorf("%w", err1)
+	}else if err2 != nil {
+		return "", fmt.Errorf("%w", err2)
 	}
 	if minus_count == 2 {
 		
 		return strconv.Itoa(-opp1-opp2), err
 	}else if minus_count == 1 && s1[0] == 45 {
 		return strconv.Itoa(opp2-opp1), err
+	}else if minus_count ==1 && s1[1] == 45 {
+		return strconv.Itoa(opp1-opp2), err
 	}else{
 		return strconv.Itoa(opp2+opp1), err
 	}
