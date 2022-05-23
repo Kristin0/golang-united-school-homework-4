@@ -51,7 +51,6 @@ func StringSum(input string) (output string, err error) {
 
 	s2 := strings.FieldsFunc(s1, Split)
 	if len(s2) > 2 || len(s2) <= 1 {return "", errorNotTwoOperands}
-	fmt.Println(s2)
 	opp1, err1  := strconv.Atoi(s2[0])
 	opp2, err2  := strconv.Atoi(s2[1])
 	if err1 != nil || err2 != nil {
