@@ -2,6 +2,16 @@ package string_sum
 
 import (
 	"errors"
+	
+	"strconv"
+
+	//"fmt"
+	//	"strconv"
+
+	//"strconv"
+	"strings"
+	//"strings"
+	//	"strconv"
 )
 
 //use these errors as appropriate, wrapping them with fmt.Errorf function
@@ -23,5 +33,37 @@ var (
 // Use the errors defined above as described, again wrapping into fmt.Errorf
 
 func StringSum(input string) (output string, err error) {
-	return "", nil
+
+	if input == "" {return "", errorEmptyInput}
+	
+	var minus_count int
+	var plus_count int
+	s1 :=  strings.ReplaceAll(input, " ", "")
+	for _, v := range s1 {
+		if v == 45 {
+			minus_count++
+		}else if v == 43 { 
+			plus_count++
+		}else if  v > 57 || v < 48 {return "", errorNotTwoOperands}
+	}
+	s2 := strings.FieldsFunc(s1, Split)
+	opp1, _  := strconv.Atoi(s2[0])
+	opp2, _  := strconv.Atoi(s2[1])
+	if minus_count > 2 || plus_count > 2 {
+		return "", errorNotTwoOperands
+	}else if minus_count == 2 {
+		
+		return strconv.Itoa(-opp1-opp2), err
+	}else if minus_count == 1 && s1[0] == 45 {
+		return strconv.Itoa(opp2-opp1), err
+	}else{
+		return strconv.Itoa(opp2+opp1), err
+	}
+
+
+	
+}
+
+func Split(r rune) bool {
+    return r == '+' || r == '-'
 }
