@@ -36,7 +36,7 @@ var (
 
 func StringSum(input string) (output string, err error) {
 
-	if input == "" {return "", errorEmptyInput}
+	if input == "" {return "", fmt.Errorf("%w", errorEmptyInput)}
 	
 	var minus_count int
 	var plus_count int
@@ -50,7 +50,7 @@ func StringSum(input string) (output string, err error) {
 	}
 
 	s2 := strings.FieldsFunc(s1, Split)
-	if len(s2) > 2 || len(s2) <= 1 {return "", errorNotTwoOperands}
+	if len(s2) > 2 || len(s2) <= 1 {return "",  fmt.Errorf("%w", errorNotTwoOperands)}
 	opp1, err1  := strconv.Atoi(s2[0])
 	opp2, err2  := strconv.Atoi(s2[1])
 	if err1 != nil {
@@ -63,11 +63,11 @@ func StringSum(input string) (output string, err error) {
 		return strconv.Itoa(-opp1-opp2), err
 	}else if minus_count == 1 && s1[0] == 45 {
 		return strconv.Itoa(opp2-opp1), err
-	}else if minus_count ==1 && s1[1] == 45 {
+	}else if minus_count == 1 && s1[1] == 45  {
+		return strconv.Itoa(opp2-opp1), err
+	}else if opp1 < opp2{
 		return strconv.Itoa(opp1-opp2), err
-	}else{
-		return strconv.Itoa(opp2+opp1), err
-	}
+	}else {return strconv.Itoa(opp2+opp1), err}
 
 	
 
