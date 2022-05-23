@@ -2,7 +2,8 @@ package string_sum
 
 import (
 	"errors"
-	
+	"fmt"
+
 	"strconv"
 
 	//"fmt"
@@ -10,6 +11,7 @@ import (
 
 	//"strconv"
 	"strings"
+	//"golang.org/x/tools/go/analysis/passes/nilfunc"
 	//"strings"
 	//	"strconv"
 )
@@ -44,13 +46,17 @@ func StringSum(input string) (output string, err error) {
 			minus_count++
 		}else if v == 43 { 
 			plus_count++
-		}else if  v > 57 || v < 48 {return "", errorNotTwoOperands}
+		}
 	}
+
 	s2 := strings.FieldsFunc(s1, Split)
-	opp1, _  := strconv.Atoi(s2[0])
-	opp2, _  := strconv.Atoi(s2[1])
-	// if minus_count > 2 || plus_count > 2 {
-	// 	return "", errorNotTwoOperands
+	if len(s2) > 2 || len(s2) <= 1 {return "", errorNotTwoOperands}
+	fmt.Println(s2)
+	opp1, err1  := strconv.Atoi(s2[0])
+	opp2, err2  := strconv.Atoi(s2[1])
+	if err1 != nil || err2 != nil {
+		return "", fmt.Errorf("operand %s or %s is string", s2[0], s2[1])
+	}
 	if minus_count == 2 {
 		
 		return strconv.Itoa(-opp1-opp2), err
