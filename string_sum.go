@@ -3,17 +3,9 @@ package string_sum
 import (
 	"errors"
 	"fmt"
-
 	"strconv"
-
-	//"fmt"
-	//	"strconv"
-
-	//"strconv"
 	"strings"
-	//"golang.org/x/tools/go/analysis/passes/nilfunc"
-	//"strings"
-	//	"strconv"
+
 )
 
 //use these errors as appropriate, wrapping them with fmt.Errorf function
