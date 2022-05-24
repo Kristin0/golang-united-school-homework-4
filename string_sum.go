@@ -37,12 +37,15 @@ var (
 func StringSum(input string) (output string, err error) {
 
 	if input == "" {return "", fmt.Errorf("%w", errorEmptyInput)}
-	
+
+	var plus_count int
 	var minus_count int
 	s1 :=  strings.ReplaceAll(input, " ", "")
 	for _, v := range s1 {
 		if v == 45 {
 			minus_count++
+		}else if v == 43{
+			plus_count++
 		}
 	}
 
@@ -61,6 +64,8 @@ func StringSum(input string) (output string, err error) {
 	if minus_count == 2 {
 		return strconv.Itoa(-opp1-opp2), err
 	}else if minus_count == 1 && s1[0] == 45 && opp1 > opp2{
+		return strconv.Itoa(opp2-opp1), err
+	}else if plus_count == 1 && s1[0] == 45 && opp1 < opp2{
 		return strconv.Itoa(opp2-opp1), err
 	}else if minus_count == 1 && s1[0] == 45 && opp1 < opp2{
 		return strconv.Itoa(opp1-opp2), err
